@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface version="1.4" author="PygubuDesigner 0.39.3">
+  <project>
+    <settings />
+    <customwidgets />
+  </project>
+  <object class="tk.Toplevel" id="mainwindow" named="True">
+    <property name="geometry">640x600</property>
+    <property name="height">200</property>
+    <property name="iconbitmap">ico.ico</property>
+    <property name="title" translatable="yes">VERTMAX I/O HELPER</property>
+    <property name="width">200</property>
+    <child>
+      <object class="ttk.Combobox" id="locations" named="True">
+        <property name="cursor">arrow</property>
+        <property name="state">readonly</property>
+        <property name="takefocus">false</property>
+        <property name="textvariable">string:var_loc</property>
+        <layout manager="place">
+          <property name="anchor">nw</property>
+          <property name="height">25</property>
+          <property name="width">350</property>
+          <property name="x">10</property>
+          <property name="y">10</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Treeview" id="i_table" named="True">
+        <property name="selectmode">extended</property>
+        <layout manager="place">
+          <property name="height">250</property>
+          <property name="width">620</property>
+          <property name="x">10</property>
+          <property name="y">45</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Treeview" id="o_table" named="True">
+        <property name="selectmode">extended</property>
+        <layout manager="place">
+          <property name="height">250</property>
+          <property name="width">620</property>
+          <property name="x">10</property>
+          <property name="y">305</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="label_info" named="True">
+        <property name="anchor">n</property>
+        <property name="justify">left</property>
+        <property name="relief">flat</property>
+        <property name="state">normal</property>
+        <property name="text" translatable="yes">VERTMAX I/O HELPER v0.8     </property>
+        <layout manager="place">
+          <property name="anchor">se</property>
+          <property name="relx">0.87</property>
+          <property name="rely">1.0</property>
+          <property name="x">-10</property>
+          <property name="y">-10</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Checkbutton" id="inv_check" named="True">
+        <property name="command" type="command" cbtype="with_wid">update_invalid_check</property>
+        <property name="state">normal</property>
+        <property name="text" translatable="yes">Hide invalid ports</property>
+        <layout manager="pack">
+          <property name="anchor">nw</property>
+          <property name="padx">10</property>
+          <property name="pady">10</property>
+          <property name="side">bottom</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Spinbox" id="widget_id" named="True">
+        <property name="command" type="command" cbtype="simple">change_widget_id</property>
+        <property name="from_">1</property>
+        <property name="increment">1</property>
+        <property name="state">readonly</property>
+        <property name="text" translatable="yes">1</property>
+        <property name="to">16</property>
+        <bind sequence="&lt;&lt;Decrement&gt;&gt;" handler="dec_widget_id" add="" />
+        <bind sequence="&lt;&lt;Increment&gt;&gt;" handler="inc_widget_id" add="" />
+        <layout manager="place">
+          <property name="anchor">ne</property>
+          <property name="relx">1.0</property>
+          <property name="width">40</property>
+          <property name="x">-65</property>
+          <property name="y">10</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="label_author" named="True">
+        <property name="foreground">#0000ff</property>
+        <property name="text" translatable="yes">by PavelKom</property>
+        <layout manager="place">
+          <property name="anchor">se</property>
+          <property name="relx">1.0</property>
+          <property name="rely">1.0</property>
+          <property name="x">-10</property>
+          <property name="y">-10</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="label1">
+        <property name="text" translatable="yes">PLC2 I/O SLOT</property>
+        <layout manager="place">
+          <property name="anchor">ne</property>
+          <property name="relx">1.0</property>
+          <property name="x">-110</property>
+          <property name="y">10</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Message" id="er_i_message" named="True">
+        <property name="background">#ff1111</property>
+        <property name="justify">center</property>
+        <property name="text" translatable="yes">Can't read inputs config
+%s</property>
+        <property name="width">620</property>
+        <layout manager="place">
+          <property name="anchor">nw</property>
+          <property name="height">250</property>
+          <property name="width">620</property>
+          <property name="x">10</property>
+          <property name="y">45</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Message" id="er_o_message" named="True">
+        <property name="background">#ff1111</property>
+        <property name="justify">center</property>
+        <property name="text" translatable="yes">Can't read outputs config
+%s</property>
+        <property name="width">620</property>
+        <layout manager="place">
+          <property name="anchor">nw</property>
+          <property name="height">250</property>
+          <property name="width">620</property>
+          <property name="x">10</property>
+          <property name="y">305</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Button" id="button_clear_slot" named="True">
+        <property name="style">Toolbutton</property>
+        <property name="text" translatable="yes">CLEAR</property>
+        <layout manager="place">
+          <property name="anchor">ne</property>
+          <property name="relx">1.0</property>
+          <property name="x">-10</property>
+          <property name="y">8</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Button" id="plc_status" named="True">
+        <property name="state">normal</property>
+        <property name="style">Toolbutton</property>
+        <property name="text" translatable="yes">PLC NOT LOADED</property>
+        <layout manager="place">
+          <property name="anchor">s</property>
+          <property name="relx">0.5</property>
+          <property name="rely">1</property>
+          <property name="x">-75</property>
+          <property name="y">-10</property>
+        </layout>
+      </object>
+    </child>
+  </object>
+</interface>
